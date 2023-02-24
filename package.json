@@ -1,0 +1,23 @@
+{
+  "name": "mongo-session-store",
+  "version": "1.0.0",
+  "description": "Middleware to store expression session data in mongoDB databse. Using the official mogoDB driver, less dependencies and possibility to reuse the client for other database tasks.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --verbose"
+  },
+  "keywords": [
+    "mongodb",
+    "express",
+    "session"
+  ],
+  "author": "Reiner Pröls",
+  "license": "ISC",
+  "dependencies": {
+    "express-session": "^1.17.3",
+    "mongodb": "^5.1.0"
+  },
+  "devDependencies": {
+    "jest": "^29.4.3"
+  }
+}
