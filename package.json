@@ -1,6 +1,6 @@
 {
   "name": "mongo-express-session-store",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Middleware to store expression session data in mongoDB databse. Using the official mogoDB driver, less dependencies and possibility to reuse the client for other database tasks.",
   "main": "index.js",
   "scripts": {

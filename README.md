@@ -12,7 +12,7 @@ The getMongo function will do the job. In a callback it delivers after connectio
 After you've created your own project using `npm init`, you can run:
 
 ```bash
-npm install mongo-session-store
+npm install mongo-express-session-store
 ```
 This will download the session store and add a dependency entry in your `package.json` file.
 
@@ -25,7 +25,7 @@ Complete working example:
 
 const express = require('express')
 const session = require('express-session')
-+const mongoDBSessionStore = require('mongodb-express-session-store')
++const mongoDBSessionStore = require('mongo-express-session-store')
 
 const app = express()
 
@@ -73,7 +73,7 @@ app.listen(3000)```
 import express from 'express'
 import session from 'express-session'
 
-+import mongoDBSessionStore from 'mongodb-express-session-store'
++import mongoDBSessionStore from 'mongo-express-session-store'
 
 const app = express()
 
