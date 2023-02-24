@@ -10,7 +10,7 @@ MONGODB_URL='mongodb://???:???@127.0.01:27017/?authSource=admin'
 */
 
 const session = require('express-session')
-const mongoDBSessionStore = require('mongodb-express-session-store')
+const mongoDBSessionStore = require('mongo-express-session-store')
 require('dotenv').config()
 
 console.log(process.env.MONGODB_URL)
