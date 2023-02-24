@@ -25,7 +25,7 @@ Complete working example:
 
 const express = require('express')
 const session = require('express-session')
-+const mongoDBSessionStore = require('mongo-session-store')
++const mongoDBSessionStore = require('mongodb-express-session-store')
 
 const app = express()
 
@@ -73,7 +73,7 @@ app.listen(3000)```
 import express from 'express'
 import session from 'express-session'
 
-+import mongoDBSessionStore from 'mongo-session-store'
++import mongoDBSessionStore from 'mongodb-express-session-store'
 
 const app = express()
 
