@@ -183,6 +183,7 @@ example:
 For the test I use the following database and collection names:
 >
 >databaseName: "sessionUnitTest"
+>
 >collectionName: "sessions"
 
 Then run the test with `npm test`.
