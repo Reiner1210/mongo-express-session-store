@@ -18,8 +18,64 @@ This will download the session store and add a dependency entry in your `package
 
 ## Usage ##
 
-Complete working example:
-### cjs ###
+### Quickstart ###
+
+1. Install the package
+```bash
+npm install mongo-express-session-store
+```
+
+2. Import the package in your source file
+```js
+cjs:
+const mongoDBSessionStore = require('mongo-express-session-store')
+
+ES6+:
+import mongoDBSessionStore from 'mongo-express-session-store'
+```
+
+3. Get the store class
+```js
+const MongoDBSessionStore = mongoDBSessionStore(session)
+```
+
+4. Create the store object
+```js
+const MONGODB_URL = 'mongodb://USER:PASS@127.0.01:27017/?authSource=admin'
+const mongoStore = new MongoDBSessionStore({
+    mongoUrl: MONGODB_URL,
+    databaseName: "sessionTest",
+    collectionName: "sessions"
+})
+```
+
+5. Set the store in the session
+```js
+app.use(session({
+    secret: 'Top secret ...',
+    cookie: {
+        maxAge: 3600*24*1000,
+    },
+    resave: false,
+    saveUninitialized: true,
+    store: mongoStore
+    })
+)
+```
+
+6. Get the MongoDB client, database and collection objects (optional)
+```js
+let mongoClient = null
+let mongoDatabase = null
+mongoStore.getMongo((client, database) => {
+    mongoClient = client
+    mongoDatabase = database
+    console.log('Client connected')
+})
+```
+
+#### Complete working example ####
+##### cjs #####
 ```diff
 'use strict'
 
@@ -66,7 +122,7 @@ app.get('/test', (req, res) => {
 
 app.listen(3000)```
 ```
-### ES6 ###
+#### ES6 ####
 ```diff
 'use strict'
 
@@ -114,3 +170,22 @@ app.get('/test', (req, res) => {
 
 app.listen(3000)
 ```
+## Test ##
+I have done some tests with [jest](https://www.npmjs.com/package/jest)
+
+For this you need to create an .env file in the root of this project
+it must contain the [MongoDB URL](https://www.mongodb.com/docs/manual/reference/connection-string/):
+example:
+> MONGODB_URL='mongodb://USER:PASS@127.0.01:27017/?authSource=admin'
+You have to urlencode `USER` and `PASS`
+
+For the test I use the following database and collection names:
+>databaseName: "sessionUnitTest"
+collectionName: "sessions"
+
+Then run the test with `npm test`.
+
+
+
+
+
