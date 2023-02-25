@@ -177,11 +177,13 @@ For this you need to create an .env file in the root of this project
 it must contain the [MongoDB URL](https://www.mongodb.com/docs/manual/reference/connection-string/):
 example:
 > MONGODB_URL='mongodb://USER:PASS@127.0.01:27017/?authSource=admin'
-You have to urlencode `USER` and `PASS`
+>
+>You have to urlencode `USER` and `PASS`
 
 For the test I use the following database and collection names:
+>
 >databaseName: "sessionUnitTest"
-collectionName: "sessions"
+>collectionName: "sessions"
 
 Then run the test with `npm test`.
 
