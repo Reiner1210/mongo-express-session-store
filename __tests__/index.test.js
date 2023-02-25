@@ -185,7 +185,7 @@ describe("Test Store", () => {
             })
         });
 
-        test("It should be more no data in the database", (done) => {
+        test("It should be no more data in the database", (done) => {
             mongoStore.length((error, data) => {
                 expect(error).toBeNull()
                 expect(data).toBe(0)
