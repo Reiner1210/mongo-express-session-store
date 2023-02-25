@@ -5,7 +5,7 @@ I have tried to keep the dependencies as small as possible.
 It is also possible to get the MongoDB client, database and collection
 for other database tasks in the app.
 MongoDB recommends only to use one client per app.
-The getMongo function will do the job. In a callback it delivers after connection the client, daatabase and collection.
+The `getMongo` function will do the job. In a callback it delivers after connection the client, database and collection.
 
 ## Installation
 
