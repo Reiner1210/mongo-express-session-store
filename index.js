@@ -4,12 +4,10 @@
 
 /*
 ES6 stuff
-import session from 'express-session'
 import {MongoClient} from 'mongodb'
 import {EventEmitter} from 'node:events'
 */
 
-const session = require('express-session')
 const {MongoClient} = require('mongodb')
 const EventEmitter = require('node:events')
 
@@ -59,11 +57,10 @@ module.exports = function (session)
             {
                 await this.client.connect()
                 if (this.connectDelay)
-                    await new Promise(res => setTimeout(res, this.connect_delay))
+                    await new Promise(res => setTimeout(res, this.connectDelay))
                 const db = this.client.db(this.databaseName)
                 this.collection = db.collection(this.collectionName)
                 this.db = db
-                this.evEmitter.emit(EV_DB_CONNECTED)
                 // https://www.mongodb.com/docs/manual/tutorial/expire-data/#std-label-ttl-collections
                 // const result1 = await this.collection.listIndexes()
                 // console.log(result1)
@@ -71,8 +68,10 @@ module.exports = function (session)
                     await this.collection.createIndex({expires:1}, {expireAfterSeconds: 0})
                 if (this.debug)
                     console.log("INIT DONE")
-            }
-            catch(error)
+
+                this.evEmitter.emit(EV_DB_CONNECTED)
+                }
+                catch(error)
             {
                 console.log(error)
             }
@@ -137,10 +136,7 @@ module.exports = function (session)
             try
             {
                 if (session['cookie']['expires'])
-                {
-                    console.log("mmm")
                     expire = new Date(session['cookie']['expires'])
-                }
             }
             catch(error)
             {}
@@ -162,7 +158,7 @@ module.exports = function (session)
             if (this.db)
             {
                 if (this.debug)
-                    console.dir(`Store - SET ${sid}`)
+                    console.log(`Store - SET ${sid}`)
                 const sessionData = this.getSession(session)
                 const expireDate = this.getExpireDate(session)
                 try
@@ -190,7 +186,7 @@ module.exports = function (session)
             if (this.db)
             {
                 if (this.debug)
-                    console.dir('Store - TOUCH', sid, session)
+                    console.log('Store - TOUCH', sid)
                 const sessionData = this.getSession(session)
                 const expireDate = this.getExpireDate(session)
                 try
@@ -218,7 +214,7 @@ module.exports = function (session)
             if (this.db)
             {
                 if (this.debug)
-                    console.dir('Store - DESTROY', sid)
+                    console.log('Store - DESTROY', sid)
                 try
                 {
                    const result = await this.collection.deleteOne({_id: "" + sid})
@@ -235,7 +231,7 @@ module.exports = function (session)
             {
                 if (this.debug)
                     console.log('STORE - DESTROY - not yet connected')
-                this.evEmitter.once(EV_DB_CONNECTED, () => this.destroy(sid, session, cb))
+                this.evEmitter.once(EV_DB_CONNECTED, () => this.destroy(sid, cb))
             }
         }
 

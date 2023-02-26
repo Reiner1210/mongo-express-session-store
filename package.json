@@ -1,6 +1,6 @@
 {
   "name": "mongo-express-session-store",
-  "version": "1.0.15",
+  "version": "1.0.16",
   "repository": {
     "type": "git",
     "url": "https://github.com/Reiner1210/mongo-express-session-store"
@@ -17,7 +17,10 @@
     "session",
     "ES6"
   ],
-  "author": "Reiner Pröls",
+  "author": {
+    "name": "Reiner Pröls",
+    "email": "Reiner.Proels@gmail.com"
+  },
   "license": "ISC",
   "dependencies": {
     "express-session": "^1.17.3",

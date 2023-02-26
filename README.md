@@ -97,7 +97,7 @@ const app = express()
 +)
 
 +let mongoClient = null
-+mongoStore.getMongo(client => {mongoClient = client; console.log('Client connected')})
++mongoStore.getMongo((client, database) => {mongoClient = client; console.log('Client connected')})
 
 app.use(session(
     {
@@ -145,7 +145,7 @@ const app = express()
 +)
 
 +let mongoClient = null
-+mongoStore.getMongo(client => {mongoClient = client; console.log('Client connected')})
++mongoStore.getMongo((client, database) => {mongoClient = client; console.log('Client connected')})
 
 app.use(session(
     {
@@ -170,6 +170,10 @@ app.get('/test', (req, res) => {
 
 app.listen(3000)
 ```
+
+#### Example ####
+In the `doc` directory there is the source code for the example.
+
 ## Test ##
 I have done some tests with [jest](https://www.npmjs.com/package/jest)
 
@@ -187,6 +191,14 @@ For the test I use the following database and collection names:
 >collectionName: "sessions"
 
 Then run the test with `npm test`.
+
+## License ##
+
+[ISC](https://www.isc.org/licenses/)
+
+© 2023 Reiner Pröls
+
+
 
 
 
